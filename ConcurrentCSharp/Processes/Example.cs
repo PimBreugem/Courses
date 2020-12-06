@@ -63,6 +63,36 @@ namespace Example
         public void printIdByName()
         {
             // todo: Implement the body of this method that gets an input for a process name and prints corresponding id
+            var stop = false;
+            while(!stop)
+            {
+                this.printAllProcesses();
+                Console.WriteLine("Select a process name to get corresponding id (enter stop to finish):");
+                string inp = Console.ReadLine();
+
+                if (inp == "stop") { stop = true; }
+                else
+                {
+                    foreach (Process p in this.localProcsAll)
+                    {
+                        try
+                        {
+                            if (p.ProcessName == inp)
+                            {
+                                //Print corresponding id
+                                Console.WriteLine("Process {1} has id {0}", p.Id, p.ProcessName);
+                                Console.ReadLine();
+                            }
+
+                        }
+                        catch (Exception e)
+                        {
+                            Console.Out.WriteLine("Your input is not valid ...", e.Message);
+                            break;
+                        }
+                    }
+                }
+            }
         }
     }
 }
